@@ -21,9 +21,15 @@ class App extends React.Component
     if(changedVal !== "=" && changedVal !== "AC")
       this.setState({exp: this.state.exp+changedVal})
     else if(changedVal === "=")
+    {
       this.setState({ans: eval(this.state.exp)})
+      this.setState({exp: eval(this.state.exp)})
+    }
     else if(changedVal === "AC")
+    {
       this.setState({exp: ''})
+      this.setState({ans: ''})
+    }
   }
   render()
   {
@@ -48,7 +54,7 @@ class App extends React.Component
 
     return (
     <div>
-      <h1 class="dim fw2 i sans-serif ttc b--black-60 f1 lh-title tracked"> Basic Calculator app </h1>
+      <h1 class="dim tc fw2 i sans-serif ttc b--black-60 f1 lh-title tracked"> Basic Calculator app </h1>
       <OutputBox expr={this.state.exp} what="Expression" />
       <OutputBox expr={this.state.ans} what="Answer" />
       {allButtons}
