@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from './Button'
 import 'tachyons'
+
+import OutputBox from './OutputBox'
 class App extends React.Component
 {
   constructor()
@@ -8,7 +10,8 @@ class App extends React.Component
     super();
     this.state = 
     {
-      exp: ''
+      exp: '',
+      ans: ''
     }
     this.handler = this.handler.bind(this)
   }
@@ -18,7 +21,7 @@ class App extends React.Component
     if(changedVal !== "=" && changedVal !== "AC")
       this.setState({exp: this.state.exp+changedVal})
     else if(changedVal === "=")
-      console.log(eval(this.state.exp))
+      this.setState({ans: eval(this.state.exp)})
     else if(changedVal === "AC")
       this.setState({exp: ''})
   }
@@ -45,7 +48,9 @@ class App extends React.Component
 
     return (
     <div>
-      <h1> Basic Calculator app </h1>
+      <h1 class="dim fw2 i sans-serif ttc b--black-60 f1 lh-title tracked"> Basic Calculator app </h1>
+      <OutputBox expr={this.state.exp} what="Expression" />
+      <OutputBox expr={this.state.ans} what="Answer" />
       {allButtons}
     </div>
     );  
